@@ -1,0 +1,41 @@
+
+.App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
+  .square {
+    width: 450px;
+  height: 250px;
+    background-color: red;
+  }
+  
+  button {
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+  }
+  
+  .wrong-answer {
+    text-align: center;
+    color: red;
+    font-size: 30px;
+  }
+  
+  
+  
+  .correct-answer {
+    text-align: center;  
+    color: green;
+    font-size: 30px
+  }
+  .hidden{
+    display: none;
+  }
+  
+  .guess-input {
+    text-transform: uppercase;
+  }
