@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hexaTester/static/css/main.e68e4981.css",
+    "main.js": "/hexaTester/static/js/main.67e8a5b0.js",
+    "index.html": "/hexaTester/index.html",
+    "main.e68e4981.css.map": "/hexaTester/static/css/main.e68e4981.css.map",
+    "main.67e8a5b0.js.map": "/hexaTester/static/js/main.67e8a5b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e68e4981.css",
+    "static/js/main.67e8a5b0.js"
+  ]
+}
