@@ -1,22 +1,36 @@
 
-.App{
+.main-square{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
   }
   
+  .information-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .square {
     width: 450px;
-  height: 250px;
-    background-color: red;
+    height: 250px;
+    background-color: color;
   }
   
   button {
-    margin: 20px;
-    padding: 10px;
-    font-size: 20px;
+    border: 1px solid #999;
+    font-size: 18px;
+    color: #1c87c9;
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px #ccc;
+    text-align: center;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #0163a0;
+    color: white;
   }
   
   .wrong-answer {
@@ -25,17 +39,135 @@
     font-size: 30px;
   }
   
-  
-  
   .correct-answer {
     text-align: center;  
     color: green;
     font-size: 30px
   }
+
   .hidden{
     display: none;
   }
   
   .guess-input {
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
     text-transform: uppercase;
   }
+  
+  .display-results {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
+  }
+
+  .set-questions {
+    display: flex;
+    margin-top:100px;
+    margin-left:50px;
+    
+  }
+
+  .final-grade span {
+    display: block;
+  }
+
+
+  .label {
+    font-size: 30px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
+    color: #1c87c9;
+  }
+
+  .total-color-questions {
+    width: 120px;
+    height: 30px;
+    margin-left: 20px;
+    border: 1px solid #999;
+    font-size: 18px;
+    color: #1c87c9;
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: 4px 4px #ccc;
+    text-align: center;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .toggle-button {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  .button-area {
+    display: inline-flex;
+    padding-top: 10px;
+    padding-left: 40px;
+    height: 150px;
+    width: 300px;
+  }
+
+  /* .question-counter {
+    font-size: 40px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
+    text-align: center;
+  } */
+
+  .button-test-area {
+    display:flex;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .button__end-test {
+    width: 300px;
+    height: 150PX;
+  }
+  .button__end-test:hover {
+    width: 300px;
+    height: 150PX;
+    background-color:darkred
+  }
+
+  .button__start-test {
+    width: 300px;
+  }
+
+  .button__start-test:hover {
+    cursor: pointer;
+    background-color: forestgreen;
+  }
+
+  .env-title {
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
+    text-align: center;
+  }
+
+  .question-display {
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px  #ccc;
+    text-align: center;
+  }
+
+  .guess-input {
+
+  }
+  .hex-selections {
+   display: flex;
+   justify-content: center;
+  }
+
+

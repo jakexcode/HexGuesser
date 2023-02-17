@@ -6,7 +6,7 @@ export default function ColorTest() {
   const [color, setColor] = useState("");
   const [answers, setAnswers] = useState([]);
   const [result, setResult] = useState(undefined);
-  const [isVisbible, setIsVisible] = useState(false);
+  const [isVisbible, setIsVisible] = useState(true);
   const [guess, setGuess] = useState("#");
   const [correctCounter, setCorrectCounter] = useState(0);
   const [totalColorQuestions, setTotalColorQuestions] = useState(undefined);
@@ -90,7 +90,10 @@ export default function ColorTest() {
 
   const startTest = () => {
     setMode("test");
+    setResult(undefined);
     setFinalGrade(undefined);
+    setEndOfTest(false);
+    setCorrectCounter(0);
     setLimit(totalColorQuestions);
   };
 
@@ -105,9 +108,9 @@ export default function ColorTest() {
       generateColors();
     }
     setFinalGrade(correctCounter / totalColorQuestions);
-    setCorrectCounter(0);
     setColorsClicked(0);
     setTotalColorQuestions(undefined);
+    setEndOfTest(true);
     setMode("practice");
   };
 
@@ -127,107 +130,155 @@ export default function ColorTest() {
   console.log("your clicks are" + colorsClicked);
   return (
     <>
-      <div>
-        {finalGrade && <h1>{finalGrade}</h1>}
+      {mode === "test" ? (
+        <>
+          <p className="env-title"> Test</p>
+          <p className="question-display">Question {colorsClicked + 1}</p>
+        </>
+      ) : (
+        <p className="env-title">Practice</p>
+      )}
+      {/* {mode === "practice" ? (
+        []
+      ) : (
+        <p className="question-counter">
+          {colorsClicked} / {limit}
+        </p>
+      )} */}
+      <div className="toggle-button">
         {mode === "practice" ? (
-          []
+          <button onClick={() => handleVisibleClick()}>Toggle Buttons</button>
         ) : (
-          <h1>
-            {correctCounter} / {totalColorQuestions}
-          </h1>
+          []
         )}
       </div>
-      <div>
-        <label for="total-color-questions">
-          Set number of questions you'd like
-        </label>{" "}
-        <input
-          className="total-color-questions"
-          type="number"
-          id="total-color-questions"
-          name="total-color-questions"
-          value={totalColorQuestions}
-          onChange={handleTotalColorSetChange}
-        />
+
+      <div className="row">
+        {mode === "practice" ? (
+          <div className="set-questions">
+            <label className="label" for="total-color-questions">
+              How Many Questions Would You Like?
+            </label>
+
+            <select
+              className="total-color-questions"
+              name="total-color-questions"
+              value={totalColorQuestions}
+              onChange={handleTotalColorSetChange}
+            >
+              <option> select</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={25}>25</option>
+            </select>
+          </div>
+        ) : (
+          []
+        )}
         {mode === "test" ? (
-          <button onClick={endTest}>End Test</button>
+          <div className="button-test-area">
+            <button className="button__end-test" onClick={endTest}>
+              End Test
+            </button>
+          </div>
         ) : (
           <>
-            {!totalColorQuestions ? (
-              <button disabled onClick={startTest}>
-                Start Test
-              </button>
-            ) : (
-              <button onClick={startTest}>Start Test</button>
-            )}
+            <div className="button-area">
+              {!totalColorQuestions ? (
+                <button
+                  className="button__start-test"
+                  disabled
+                  onClick={startTest}
+                >
+                  Start Test
+                </button>
+              ) : (
+                <button className="button__start-test" onClick={startTest}>
+                  Start Test
+                </button>
+              )}
+            </div>
           </>
         )}
       </div>
-      <div className="App">
-        <div>
-          {mode === "practice" ? (
-            <>
-              <label for="guess">Enter Guess Here</label>
-              <input
-                className="guess-input"
-                type="text"
-                id="guess"
-                name="guess"
-                value={guess}
-                onChange={handleGuessChange}
-              />
-              <button onClick={() => handleSubmit(guess)}>Submit Guess</button>
-            </>
-          ) : (
-            []
-          )}
+      {endOfTest ? (
+        <div className="display-results">
+          <p className="final-grade">
+            Your Final Grade is{finalGrade && finalGrade * 100}%<br />{" "}
+            <span>
+              You Got {correctCounter}/{limit} Correct
+            </span>
+          </p>{" "}
+        </div>
+      ) : (
+        []
+      )}
 
-          <div>
-            <button onClick={() => handleVisibleClick()}>Toggle Buttons</button>
-          </div>
-          <div className="square" style={{ background: color }}></div>
-          {answers.map((answer, idx) => (
-            <>
-              {mode === "practice" ? (
-                <>
+      {mode === "practice" ? (
+        <div className="information-area">
+          <label className="label" for="guess">
+            Enter Guess Here
+          </label>
+          <input
+            className="guess-input"
+            type="text"
+            id="guess"
+            name="guess"
+            value={guess}
+            onChange={handleGuessChange}
+          />
+          <button onClick={() => handleSubmit(guess)}>Submit Guess</button>
+        </div>
+      ) : (
+        []
+      )}
+
+      <div className="main-square">
+        <div className="square" style={{ background: color }}></div>
+      </div>
+      <div className="hex-selections">
+        {answers.map((answer, idx) => (
+          <>
+            {mode === "practice" ? (
+              <button
+                className={isVisbible ? "visible" : "hidden"}
+                onClick={() => answerClicked(answer)}
+                key={idx}
+              >
+                {answer}
+              </button>
+            ) : (
+              <>
+                {colorsClicked === limit - 1 ? (
+                  <button className="" onClick={() => endTest(answer)}>
+                    {answer}
+                  </button>
+                ) : (
                   <button
-                    className={isVisbible ? "visible" : "hidden"}
-                    onClick={() => answerClicked(answer)}
+                    className=""
+                    onClick={() => pickedAnswer(answer)}
                     key={idx}
                   >
                     {answer}
                   </button>
-                </>
-              ) : (
-                <>
-                  {colorsClicked === limit - 1 ? (
-                    <button onClick={() => endTest(answer)}>{answer}</button>
-                  ) : (
-                    <button
-                      className={isVisbible ? "visible" : "hidden"}
-                      onClick={() => pickedAnswer(answer)}
-                      key={idx}
-                    >
-                      {answer}
-                    </button>
-                  )}
-                </>
-              )}
-            </>
-          ))}
-          {mode === "test" ? (
-            []
-          ) : (
-            <>
-              {result === true && (
-                <h2 className="correct-answer">Correct, Good Job!</h2>
-              )}
-              {result === false && (
-                <h2 className="wrong-answer">Sorry, That's Wrong.</h2>
-              )}
-            </>
-          )}
-        </div>
+                )}
+              </>
+            )}
+          </>
+        ))}
+        {mode === "test" ? (
+          []
+        ) : (
+          <>
+            {result === true && (
+              <h2 className="correct-answer">Correct, Good Job!</h2>
+            )}
+            {result === false && (
+              <h2 className="wrong-answer">Sorry, That's Wrong.</h2>
+            )}
+          </>
+        )}
       </div>
     </>
   );
