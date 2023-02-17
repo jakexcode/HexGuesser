@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/HexGuesser/static/css/main.e68e4981.css",
-    "main.js": "/HexGuesser/static/js/main.67e8a5b0.js",
+    "main.css": "/HexGuesser/static/css/main.305bc2db.css",
+    "main.js": "/HexGuesser/static/js/main.7c9ead20.js",
     "index.html": "/HexGuesser/index.html",
-    "main.e68e4981.css.map": "/HexGuesser/static/css/main.e68e4981.css.map",
-    "main.67e8a5b0.js.map": "/HexGuesser/static/js/main.67e8a5b0.js.map"
+    "main.305bc2db.css.map": "/HexGuesser/static/css/main.305bc2db.css.map",
+    "main.7c9ead20.js.map": "/HexGuesser/static/js/main.7c9ead20.js.map"
   },
   "entrypoints": [
-    "static/css/main.e68e4981.css",
-    "static/js/main.67e8a5b0.js"
+    "static/css/main.305bc2db.css",
+    "static/js/main.7c9ead20.js"
   ]
 }
