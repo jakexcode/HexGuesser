@@ -85,7 +85,11 @@ export default function ColorTest() {
 
   const handleTotalColorSetChange = (e) => {
     let value = e.target.value;
-    setTotalColorQuestions(value);
+    if (value === "select") {
+      setTotalColorQuestions();
+    } else {
+      setTotalColorQuestions(value);
+    }
   };
 
   const startTest = () => {
@@ -166,7 +170,7 @@ export default function ColorTest() {
               value={totalColorQuestions}
               onChange={handleTotalColorSetChange}
             >
-              <option> select</option>
+              <option value={"select"}> select </option>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
@@ -186,12 +190,8 @@ export default function ColorTest() {
           <>
             <div className="button-area">
               {!totalColorQuestions ? (
-                <button
-                  className="button__start-test"
-                  disabled
-                  onClick={startTest}
-                >
-                  Start Test
+                <button className="button__start-test_disabled" disabled>
+                  Select the Number of Questions
                 </button>
               ) : (
                 <button className="button__start-test" onClick={startTest}>
@@ -267,19 +267,19 @@ export default function ColorTest() {
             )}
           </>
         ))}
-        {mode === "test" ? (
-          []
-        ) : (
-          <>
-            {result === true && (
-              <h2 className="correct-answer">Correct, Good Job!</h2>
-            )}
-            {result === false && (
-              <h2 className="wrong-answer">Sorry, That's Wrong.</h2>
-            )}
-          </>
-        )}
       </div>
+      {mode === "test" ? (
+        []
+      ) : (
+        <div className="practice-result">
+          {result === true && (
+            <h2 className="correct-answer">Correct, Good Job!</h2>
+          )}
+          {result === false && (
+            <h2 className="wrong-answer">Sorry, That's Wrong.</h2>
+          )}
+        </div>
+      )}
     </>
   );
 }
